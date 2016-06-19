@@ -24,7 +24,6 @@ func createPopulateMap() {
 	fmt.Println("Length of map: ", len(numberMap))
 
 	val, ok := numberMap[93]
-
 	fmt.Println(val, ok)
 
 	if ok {
