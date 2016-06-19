@@ -1,4 +1,4 @@
-package onboarding
+package main
 
 import (
 	"fmt"
@@ -56,4 +56,8 @@ func createPopulateMap() {
 	fmt.Println(myGreeting)
 
 	//map and structs
+}
+
+func main() {
+	createPopulateMap()
 }
