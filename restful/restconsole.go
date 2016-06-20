@@ -3,8 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
-	"net/http"
 	//"encoding/xml"
 )
 
@@ -33,12 +31,13 @@ func getJsonPayloadData() ([]byte, error) {
 		"Tomatoes":   18,
 		"Onion":      8}
 	d := Data{fruits, vegetables}
+	fmt.Println(d)
 	p := Payload{d}
 	return json.MarshalIndent(p, "", " ")
 	//return xml.MarshalIndent(p, "", " ")
 }
 
-func servePayloadData(w http.ResponseWriter, r *http.Request) {
+func servePayloadData() {
 	response, err := getJsonPayloadData()
 	if err != nil {
 		panic(err)
@@ -46,18 +45,12 @@ func servePayloadData(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println(err)
 		fmt.Println("Printing slice of raw byte: \n", response)
 		fmt.Println("Printing JSON literal: \n", string(response))
-		//fmt.Fprintf(w,string(response)) //one way of writing to response writer
-		responseInt, _ := w.Write(response) //another way of writing to response writer
-		fmt.Println("Total number of bytes: ", responseInt)
+
 	}
 
 }
 
 func main() {
-	serverMux := http.NewServeMux()
-	serverMux.HandleFunc("/", servePayloadData)
-	err := http.ListenAndServe(":8080", serverMux)
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
-	}
+	servePayloadData()
+	fmt.Printf("%x\n", 456)
 }
