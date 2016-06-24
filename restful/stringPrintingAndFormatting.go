@@ -2,19 +2,19 @@ package main
 
 import "fmt"
 
-type Payload struct {
-	PayloadData Data
+type payload struct {
+	payloadData data
 }
 
-type Data map[int]int
+type data map[int]int
 
 func main() {
 
 	// Sprintf formats according to a format specifier and returns the resulting string
 	concatenated := fmt.Sprintf("a %s", "string")
 	fmt.Println(concatenated)
-	payload_data := map[int]int{1: 2}
-	d := Payload{payload_data}
+	payloadData := map[int]int{1: 2}
+	d := payload{payloadData}
 	fmt.Println(d)
 	fmt.Printf("%+v\n", d) // when printing structs, the plus flag (%+v) adds field names
 	fmt.Printf("%#v\n", d) // a Go-syntax representation of the value
