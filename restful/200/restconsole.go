@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
 	//"encoding/xml"
 )
 
@@ -18,6 +20,8 @@ type data struct {
 type fruits map[string]int
 type vegetables map[string]int
 
+// function returns response as a slice of bytes in ASCII decimal code points
+// response data code points will need to be converted/casted to string as human readable ASCII characters
 func getJSONPayloadData() ([]byte, error) {
 	fruits := map[string]int{"Apples": 10, "Oranges": 50, "Mangoes": 9}
 	vegetables := map[string]int{
@@ -42,15 +46,18 @@ func servePayloadData() {
 	if err != nil {
 		panic(err)
 	} else {
-		fmt.Println(err)
-		fmt.Println(len(response))
-		//fmt.Println("Printing slice of raw byte: \n", response)
+		fileWriteError := ioutil.WriteFile("sample2.txt", response, 0666)
+		if fileWriteError != nil {
+			log.Fatal(fileWriteError)
+		}
+		//fmt.Println(err) prints error value
+		fmt.Println("Printing slice of raw byte: \n", response[0:10])
+		fmt.Println("Printing slice of raw byte: \n", string(response))
 		//fmt.Println("Printing JSON literal: \n", string(response))
+		fmt.Println(len(response)) // prints the string length or byte length of the response data
 	}
-
 }
 
 func main() {
 	servePayloadData()
-	fmt.Printf("%x\n", 456)
 }

@@ -5,22 +5,26 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	//"encoding/xml"
 )
 
+// Payload struct
 type Payload struct {
 	ParentMap Data
 }
 
+// Data struct
 type Data struct {
 	Fruit     Fruits
 	Vegetable Vegetables
 }
 
+// Fruits map
 type Fruits map[string]int
+
+// Vegetables map
 type Vegetables map[string]int
 
-func getJsonPayloadData() ([]byte, error) {
+func getJSONPayloadData() ([]byte, error) {
 	fruits := map[string]int{"Apples": 10, "Oranges": 50, "Mangoes": 9}
 	vegetables := map[string]int{
 		"Carrot":     19,
@@ -39,12 +43,13 @@ func getJsonPayloadData() ([]byte, error) {
 }
 
 func servePayloadData(w http.ResponseWriter, r *http.Request) {
-	response, err := getJsonPayloadData()
+	response, err := getJSONPayloadData()
 	if err != nil {
 		panic(err)
 	} else {
 		//fmt.Println(err)
 		fmt.Println("Printing slice of raw byte: \n", response)
+		fmt.Println(len(response))
 		fmt.Println("Printing JSON literal: \n", string(response))
 		//fmt.Fprintf(w,string(response)) //one way of writing to response writer
 		responseInt, _ := w.Write(response) //another way of writing to response writer

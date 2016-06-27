@@ -1,0 +1,20 @@
+{
+ "ParentMap": {
+  "Fruit": {
+   "Apples": 10,
+   "Mangoes": 9,
+   "Oranges": 50
+  },
+  "Vegetable": {
+   "Beansprout": 13,
+   "Brocoli": 0,
+   "Cabbage": 17,
+   "Carrot": 19,
+   "Celery": 4,
+   "Cucumbers": 7,
+   "Onion": 8,
+   "Spinach": 9,
+   "Tomatoes": 18
+  }
+ }
+}
