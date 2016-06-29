@@ -2,11 +2,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package main
+package maint
 
 import "fmt"
 
-func main() {
+func Main300() {
 	customerAge := 29
 
 	fmt.Println(customerAge)
